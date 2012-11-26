@@ -47,7 +47,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 
     <?php
+    include("downloadFile.php");
     include ("generateRDF.php");
+    saveToFile($rawRDF,$fileName); // variables created in `generateRDF'
     ?>
 
     <body>
@@ -57,6 +59,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <img class="topLogo" src="img/logo.png"/>
 
         <div class="centerDiv">
+
+            <h2>What now?</h2>
+
+              Thanks for signing up! We'll be in touch...
+
+<br><br>
+            <h2>What Else?</h2>
+
+              You can download your RDF file, or visualize your researh...
+
+<br><br>
+<center>
+<table valign="top">
+<tr class="whatNextRow">
+<td valign="top">
+<form name="input" action="download-me.php" method="post" >
+<input type="hidden" name="fileName" id="fileName" value="<?php echo $fileName; ?>">
+<input type="hidden" name="fileLoc" id="fileLoc" value="<?php echo "rdf/" . $fileName; ?>">
+<input type="hidden" name="rawRDF" id="rawRDF" value="<?php echo urlencode($rawRDF); ?>">
+<button type="submit" id="btnDownload">Download RDF</button>
+</form>
+<img src="img/rdf_logo.png" />
+</td>
+
+<td valign="top">
+<form name="input" target="_blank" action="visualize.php" method="post" >
+<input type="hidden" name="fileName" id="fileName" value="<?php echo $fileName; ?>">
+<input type="hidden" name="fileLoc" id="fileLoc" value="<?php echo $userURI; ?>">
+<input type="hidden" name="rawRDF" id="rawRDF" value="<?php echo urlencode($rawRDF); ?>">
+<button type="submit" id="btnLodLive">Visualize!</button>
+</form>
+<img src="img/logoLodLive.jpg" />
+</td>
+</tr>
+</table>
+</center>
 
             <h2>RDF Representation</h2>
 
@@ -76,67 +114,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
                     </td>
 
-                    <td class="rdfOutputCell">
-
-                        <table>
-                            <tr  class="whatNextRow">
-                                <td>
-                                    <form name="input" action="download-me.php" method="post" >
-
-                                        <input type="hidden" name="fileName" id="fileName" value="<?php echo $fileName; ?>">
-                                        <input type="hidden" name="fileLoc" id="fileLoc" value="<?php echo "rdf/" . $fileName; ?>">
-                                        <input type="hidden" name="rawRDF" id="rawRDF" value="<?php echo urlencode($rawRDF); ?>">
-
-
-                                        <button type="submit" id="btnDownload">Download RDF</button>
-
-                                    </form>
-
-                                    <img src="img/rdf_logo.png" />
-                                </td>
-
-                            </tr>
-                            <tr class="whatNextRow">
-                                <td>
-
-                                    <form name="input" target="_blank" action="visualize.php" method="post" >
-
-                                        <input type="hidden" name="fileName" id="fileName" value="<?php echo $fileName; ?>">
-                                        <input type="hidden" name="fileLoc" id="fileLoc" value="<?php echo $userURI; ?>">
-                                        <input type="hidden" name="rawRDF" id="rawRDF" value="<?php echo urlencode($rawRDF); ?>">
-
-
-                                        <button type="submit" id="btnLodLive">Visualize!</button>
-
-                                    </form>
-
-                                    <img src="img/logoLodLive.jpg" />
-
-                                </td>
-                            </tr>
-
-<!-- The intention is to allow people to publish their data to Sindice -->
-<!-- (but their Ping service is currently not working http://goo.gl/igGpy ) -->
-<!--
-                            <tr class="whatNextRow">
-                                <td>
-
-                                    <form name="input"  action="publish-me.php" method="post" >
-
-                                        <input type="hidden" name="fileName" id="fileName" value="<?php echo $fileName; ?>">
-                                        <input type="hidden" name="fileLoc" id="fileLoc" value="<?php echo $userURI; ?>">
-                                        <input type="hidden" name="rawRDF" id="rawRDF" value="<?php echo urlencode($rawRDF); ?>">
-
-                                        <button type="submit" id="btnPublish">Publish</button>
-
-                                    </form>
-
-                                    <img src="img/logoSindice.png" />
-
-                                </td>
-
-                            </tr>
--->
 
                         </table>
 

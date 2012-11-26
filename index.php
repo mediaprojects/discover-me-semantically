@@ -45,74 +45,94 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 		var interestsArray = new Array();
 		var expertiseArray = new Array();
-		var goalsArray = new Array();
+                var findOutAboutArray = new Array();
+                var meetPersonArray = new Array();
+                var attendConfArray = new Array();
+                var visitPlaceArray = new Array();
+                // var goalsArray = new Array();
                 
                 var personalInterestsTable = $("#tableInterests");
                 var professionalExpertiseTable = $("#tableExpertise");
-                var goalsTable = $("#tableGoals");
-
-                
-                var addInterestFunc = function() {
-                    var i = interestsArray.length + 1;
-                    var interestField = "personal_interest" + i;
-		    var interestLabel = "interestLbl" + i;
-                    var newRow = $("<tr><td>"+i+") </td><td><p><input id=\"" + interestField + "\" name=\"" + interestField + "\" size=\"50\" type=\"text\"/><label id=\""+interestLabel + "\" for=\"" + interestField + "\">Add an interest...</label></p></td></tr>");
-                    personalInterestsTable.append(newRow);
-                    interestsArray.push( { item: i, field: interestField } );
-                    document.getElementById('interests_serialized').value=encodeURIComponent(JSON.stringify(interestsArray));
-                    $("input#" + interestField).autocomplete( autoCompleteDBpediaConfig );
-		    $("#" + interestLabel).inFieldLabels();
-	        }
+                var findOutAboutTable = $("#tableFindOutAbout");
+                var meetPersonTable = $("#tableMeetPerson");
+                var attendConfTable = $("#tableAttendConf");
+                var visitPlaceTable = $("#tableVisitPlace");
+                // var goalsTable = $("#tableGoals");
 
                 var addExpertiseFunc = function() {
-                    var i = expertiseArray.length + 1;
-                    var expertiseField = "professional_expertise" + i;
-		    var expertiseLabel = "expertiseLbl" + i;
-                    var newRow = $("<tr><td>"+i+") </td><td><p><input id=\"" + expertiseField + "\" name=\"" + expertiseField + "\" size=\"50\" type=\"text\"/><label id=\"" + expertiseLabel + "\" for=\"" + expertiseField + "\">Add an area of expertise...</label></p></td></tr>");
-                    professionalExpertiseTable.append(newRow);
-                    expertiseArray.push( { item: i, field: expertiseField } );
-                    document.getElementById('expertise_serialized').value=encodeURIComponent(JSON.stringify(expertiseArray));
-                    $("input#" + expertiseField).autocomplete( autoCompleteDBpediaConfig );
-		    $("#" + expertiseLabel).inFieldLabels();
-                }
+                      addElem(expertiseArray,
+                              "expertise_serialized",
+                              "professional_expertise",
+                              "expertiseLbl",
+                              "Add an area of expertise...",
+                              professionalExpertiseTable,
+                              autoCompleteDBpediaConfig);
+                    };
+                
+                var addInterestFunc  = function() {
+                      addElem(interestsArray,
+                              "interests_serialized",
+                              "personal_interest",
+                              "interestLbl",
+                              "Add an interest...",
+                              personalInterestsTable,
+                              autoCompleteDBpediaConfig);
+                    };
 
                 var addFindOutAboutFunc = function() {
-                    var i = findOutAboutArray.length + 1;
-                    var findOutAboutField = "find_out_about" + i;
-		    var findOutAboutLabel = "findOutAboutLbl" + i;
-                    var newRow = $("<tr><td>"+i+") </td><td><p><input id=\"" + findOutAboutField + "\" name=\"" + findOutAboutField + "\" size=\"50\" type=\"text\"/><label id=\"" + findOutAboutLabel + "\" for=\"" + findOutAboutField + "\">An academic person you'd like to find out more about...</label></p></td></tr>");
-                    findOutAboutTable.append(newRow);
-                    findOutAboutArray.push( { item: i, field: findOutAboutField } );
-                    document.getElementById('findOutAbout_serialized').value=encodeURIComponent(JSON.stringify(findOutAboutArray));
-                    $("input#" + findOutAboutField).autocomplete( autoCompleteDBLPAuthorConfig );
-		    $("#" + findOutAboutLabel).inFieldLabels();
+                      addElem(findOutAboutArray,
+                              "findOutAbout_serialized",
+                              "find_out_about",
+                              "findOutAboutLbl",
+                              "Something new...",
+                              findOutAboutTable,
+                              autoCompleteDBpediaConfig );
                 }
-                
 
-                var addGoalFunc = function(selectedIndex) {
-                    var i = goalsArray.length + 1;
-                    var goalOptionField = "goalOption" + i;
-                    var goalTextField = "goalText" + i;
-
-                    var newRow = $("<tr><td><select name=\"" + goalOptionField + "\" id=\"" + goalOptionField + "\" ></td><td><input id=\"" + goalTextField + "\" name=\""+ goalTextField + "\" size=\"30\" class=\"auto-hint\" /></td></tr>");
-                    goalsTable.append(newRow);
-
-                    $('#'+goalOptionField).append("<option value=\"http://www.serena.ac.uk/property/goalFindOutAbout\">find out about</option>");
-                    $('#'+goalOptionField).append("<option value=\"http://www.serena.ac.uk/property/goalMeet\">meet</option>");
-                    $('#'+goalOptionField).append("<option value=\"http://www.serena.ac.uk/property/goalAttendConference\">attend conference</option>");
-                    $('#'+goalOptionField).append("<option value=\"http://www.serena.ac.uk/property/goalVisitPlace\">visit place</option>");
-                    $('#'+goalOptionField + " option:eq("+selectedIndex+")").prop("selected",true);
-
-                    goalsArray.push( { item: i, goalType: goalOptionField, field: goalTextField } );
-                    document.getElementById('goals_serialized').value=encodeURIComponent(JSON.stringify(goalsArray));
-                    var optionBox=jQuery("#" + goalOptionField);
-                    goalOptionsMap[goalOptionField]=goalTextField;
-                    optionBox.change( goalChanged );
-                    optionBox.trigger('change');
-                    
+                var addMeetPersonFunc = function() {
+                      addElem(meetPersonArray,
+                              "meetPerson_serialized",
+                              "meet_person",
+                              "meetPersonLbl",
+                              "Academic person...",
+                              meetPersonTable,
+                              autoCompleteDBLPAuthorConfig);
                 }
+
+                var addAttendConfFunc = function() {
+                      addElem(attendConfArray,
+                              "attendConf_serialized",
+                              "attend_conf",
+                              "attendConfLbl",
+                              "A computer science conference...",
+                              attendConfTable,
+                              autoCompleteDBLPConferenceConfig);
+                }
+
+                var addVisitPlaceFunc = function() {
+                      addElem(visitPlaceArray,
+                              "visitPlace_serialized",
+                              "visit_place",
+                              "visitPlaceLbl",
+                              "Somewhere...",
+                              visitPlaceTable,
+                              autoCompleteDBpediaLocationConfig);
+                }
+
+                function addElem(arrayVal, serializedArray, fieldVal, labelVal, inputText, tableVal, autoCompleteCfg){
+                    var i = arrayVal.length + 1;
+                    var fieldVar = fieldVal + i;
+		    var labelVar = labelVal + i;
+                    var newRow = $("<tr><td>"+i+") </td><td><p><input id=\"" + fieldVar + "\" name=\"" + fieldVar + "\" size=\"50\" type=\"text\"/><label id=\"" + labelVar + "\" for=\"" + fieldVar + "\">" + inputText + "</label></p></td></tr>");
+                    tableVal.append(newRow);
+                    arrayVal.push( { item: i, field: fieldVar } );
+                    document.getElementById(serializedArray).value=encodeURIComponent(JSON.stringify(arrayVal));
+                    $("input#" + fieldVar).autocomplete( autoCompleteCfg );
+		    $("#" + labelVar).inFieldLabels();
+                }
+
                 
-                /* $("input#autocomplete").autocomplete( autoCompleteDBpediaConfig ); */
+                // $("input#autocomplete").autocomplete( autoCompleteDBpediaConfig );
                 // $("input#institute").autocomplete( autoCompleteDBpediaConfig );
                 // $("input#location").autocomplete( autoCompleteDBpediaLocationConfig );
                 $("input#dblp_uri").autocomplete( autoCompleteDBLPAuthorConfig ); 
@@ -122,12 +142,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
                 $("#btnAddInterest").ready( function() { addInterestFunc() ; addInterestFunc() ; addInterestFunc() ;} );
                 $("#btnAddExpertise").ready( function() { addExpertiseFunc() ; addExpertiseFunc() ; addExpertiseFunc() ;} );
-                $("#btnAddGoal").ready( function() { addGoalFunc(0) ; addGoalFunc(1) ; addGoalFunc(2) ; addGoalFunc(3) ; } );
+                $("#btnAddFindOutAbout").ready( function() { addFindOutAboutFunc() ; } );
+                $("#btnMeetPerson").ready( function() { addMeetPersonFunc() ; } );
+                $("#btnAttendConf").ready( function() { addAttendConfFunc() ; } );
+                $("#btnVisitPlace").ready( function() { addVisitPlaceFunc() ; } );
 
+                // $("#btnAddGoal").ready( function() { addGoalFunc(0) ; addGoalFunc(1) ; addGoalFunc(2) ; addGoalFunc(3) ; } );
 		/* Create input box for each */
                 $("#btnAddInterest").click( addInterestFunc );
                 $("#btnAddExpertise").click( addExpertiseFunc );
-                $("#btnAddGoal").click( addGoalFunc );
+                $("#btnAddFindOutAbout").click( addFindOutAboutFunc );
+                $("#btnMeetPerson").click( addMeetPersonFunc );
+                $("#btnAttendConf").click( addAttendConfFunc );
+                $("#btnVisitPlace").click( addVisitPlaceFunc );
+                // $("#btnAddGoal").click( addGoalFunc );
 
                 /* Used to pin footer */
                 $(window).resize(function() {
@@ -196,11 +224,20 @@ _gaq.push(['_trackPageview']);
                      </p>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Homepage:</td><td>
                       <p>
                       <input id="homepage" name="homepage" size="50" type="text"/>
                       <label for="homepage">http://</label>
+                      </p>
+                                </td>
+                            </tr> -->
+
+                            <tr>
+                                <td>Email address:</td><td>
+                      <p>
+                      <input id="email" name="email" size="50" type="text"/>
+                      <label for="email">Your Heriot Watt email address...</label>
                       </p>
                                 </td>
                             </tr>
@@ -233,18 +270,6 @@ If you are getting towards the end of your PhD and have written papers that have
                         </table>
                         <br><br>
 
-                        <h3>Synopsis of your research</h3>
-<div class="dblpNote">
-  Provide a summary of your research here. <i>Tip:</i> perhaps paste in some of your thesis proposal here.
-</div>
-
-
-                        <textarea rows="4" cols="40" id="about_me_text" name="about_me_text" ></textarea>
-
-                    </td>
-
-                    <td class="mainTableCell">
-
                         <h3>Academic or Professional Expertise</h3>
 
                         Enter your areas of expertise...
@@ -254,7 +279,20 @@ If you are getting towards the end of your PhD and have written papers that have
 
                         <br><br>
 
-                        <h3>Personal or Academic Interests</h3>
+                        <h3>Synopsis of your research</h3>
+<div class="dblpNote">
+  Provide a summary of your research here.<br><i>Tip:</i> perhaps paste in some of your thesis proposal here...
+</div>
+
+
+                        <textarea rows="4" cols="40" id="about_me_text" name="about_me_text" ></textarea>
+
+                    </td>
+
+                    <td class="mainTableCell">
+
+
+                        <h3>Academic Interests</h3>
 
                         Enter your areas of interest...
                         <table id="tableInterests">
@@ -265,16 +303,35 @@ If you are getting towards the end of your PhD and have written papers that have
                         <br><br>
 
                         <h3>Goals</h3>
-                        I would like to...
-                        <table id="tableGoals"></table>
+  I would like to find out about... <br><i>e.g. a programming language, methodology, framework...</i>
+                        <table id="tableFindOutAbout"></table>
+                        <button class="styled-button" type="button" id="btnAddFindOutAbout">Add another...</button>
 
-                        <button class="styled-button" type="button" id="btnAddGoal">Add another...</button>
+                        <br><br>
+  I would like to meet the computer scientist...<br><i>e.g. "Ann Blandford", "Phil Wadler"</i>
+                        <table id="tableMeetPerson"></table>
+                        <button class="styled-button" type="button" id="btnMeetPerson">Add another...</button>
+
+                        <br><br>
+  I would like to attend a computer science conference<br><i>e.g. "icfp", "popl"</i>
+                        <table id="tableAttendConf"></table>
+                        <button class="styled-button" type="button" id="btnAttendConf">Add another...</button>
+
+                        <br><br>
+                        I would like to visit a place...
+                        <table id="tableVisitPlace"></table>
+                        <button class="styled-button" type="button" id="btnVisitPlace">Add another...</button>
+
 
                         <br><br>
 
                         <input type="hidden" name="interests_serialized" id="interests_serialized" value="">
                         <input type="hidden" name="expertise_serialized" id="expertise_serialized" value="">
-                        <input type="hidden" name="goals_serialized" id="goals_serialized" value="">
+                        <input type="hidden" name="findOutAbout_serialized" id="findOutAbout_serialized" value="">
+                        <input type="hidden" name="meetPerson_serialized" id="meetPerson_serialized" value="">
+                        <input type="hidden" name="attendConf_serialized" id="attendConf_serialized" value="">
+                        <input type="hidden" name="visitPlace_serialized" id="visitPlace_serialized" value="">
+                        <!-- <input type="hidden" name="goals_serialized" id="goals_serialized" value=""> -->
 
                     </td>
                 </tr>

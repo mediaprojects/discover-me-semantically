@@ -48,10 +48,10 @@ function toAscii($str, $replace = array(), $delimiter = '-') {
 
 function generateFileName($name) {
   $i = 0;
-  $fname = toAscii($name . $i) . ".rdf";
+  $fname = sha1(toAscii($name . $i)) . ".rdf";
   while (file_exists("rdf/" . $fname)) {
     $i++;
-    $fname = toAscii($name . $i) . ".rdf";
+    $fname = sha1(toAscii($name . $i)) . ".rdf";
   }
   return $fname;
 }
@@ -103,7 +103,7 @@ function mapSingleFormField($userURI, $varJS, $property, $prepend, $isURI) {
   $objURI = $prepend . $obj;
   if ($objURI != '') {
     if ($isURI){
-      if (startsWith($objURI, "http://") || startsWith($objURI, "https://")) {
+      if (startsWith($objURI, "http://") || startsWith($objURI, "https://") || startsWith($objURI, "mailto:")) {
         $stmt = new Statement($userRes, $propRes, new resource($objURI));
         array_push($stmts, $stmt);
       }
@@ -185,6 +185,9 @@ $stmtsAll = array_merge($stmtsAll, $stmts);
 $stmts = mapSingleFormField($userURI, "homepage", FOAF . "homepage", "", true);
 $stmtsAll = array_merge($stmtsAll, $stmts);
 
+$stmts = mapSingleFormField($userURI, "email", FOAF . "mbox", "mailto:", true);
+$stmtsAll = array_merge($stmtsAll, $stmts);
+
 $stmts = mapSingleFormField($userURI, "location", FOAF . "based_near", "", true);
 $stmtsAll = array_merge($stmtsAll, $stmts);
 
@@ -202,13 +205,28 @@ $stmtsAll = array_merge($stmtsAll, $stmts);
 $stmts = mapSerializedFormField($userURI, "expertise_serialized", CCO . "expertise");
 $stmtsAll = array_merge($stmtsAll, $stmts);
 
+$stmts = mapSerializedFormField($userURI, "findOutAbout_serialized", SERENA . "goalFindOutAbout");
+$stmtsAll = array_merge($stmtsAll, $stmts);
 
-/*
+$stmts = mapSerializedFormField($userURI, "meetPerson_serialized", SERENA . "goalMeet");
+$stmtsAll = array_merge($stmtsAll, $stmts);
+
+$stmts = mapSerializedFormField($userURI, "attendConf_serialized", SERENA . "goalAttendConference");
+$stmtsAll = array_merge($stmtsAll, $stmts);
+
+$stmts = mapSerializedFormField($userURI, "visitPlace_serialized", SERENA . "goalVisitPlace");
+$stmtsAll = array_merge($stmtsAll, $stmts);
+
+
+
+/*  NOTE USED IN PhD study
  *  Now for the specialized goal properties, where both
  *  property and object needs to be read from form
  */
-$stmts = mapGoalFields($userURI, "goals_serialized");
-$stmtsAll = array_merge($stmtsAll, $stmts);
+// $stmts = mapGoalFields($userURI, "goals_serialized");
+// $stmtsAll = array_merge($stmtsAll, $stmts);
+
+
 
 
 addStmtsToModel($model, $stmtsAll);
