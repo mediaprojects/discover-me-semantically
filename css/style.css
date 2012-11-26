@@ -230,3 +230,7 @@ p {
     font-style: italic;
     color: #3787d2;
 }
+
+div.dblpNote {
+    width: 300px;
+}

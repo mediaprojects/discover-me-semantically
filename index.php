@@ -51,6 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
                 var professionalExpertiseTable = $("#tableExpertise");
                 var goalsTable = $("#tableGoals");
 
+                
                 var addInterestFunc = function() {
                     var i = interestsArray.length + 1;
                     var interestField = "personal_interest" + i;
@@ -75,7 +76,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 		    $("#" + expertiseLabel).inFieldLabels();
                 }
 
-                var addGoalFunc = function() {
+                var addFindOutAboutFunc = function() {
+                    var i = findOutAboutArray.length + 1;
+                    var findOutAboutField = "find_out_about" + i;
+		    var findOutAboutLabel = "findOutAboutLbl" + i;
+                    var newRow = $("<tr><td>"+i+") </td><td><p><input id=\"" + findOutAboutField + "\" name=\"" + findOutAboutField + "\" size=\"50\" type=\"text\"/><label id=\"" + findOutAboutLabel + "\" for=\"" + findOutAboutField + "\">An academic person you'd like to find out more about...</label></p></td></tr>");
+                    findOutAboutTable.append(newRow);
+                    findOutAboutArray.push( { item: i, field: findOutAboutField } );
+                    document.getElementById('findOutAbout_serialized').value=encodeURIComponent(JSON.stringify(findOutAboutArray));
+                    $("input#" + findOutAboutField).autocomplete( autoCompleteDBLPAuthorConfig );
+		    $("#" + findOutAboutLabel).inFieldLabels();
+                }
+                
+
+                var addGoalFunc = function(selectedIndex) {
                     var i = goalsArray.length + 1;
                     var goalOptionField = "goalOption" + i;
                     var goalTextField = "goalText" + i;
@@ -87,6 +101,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
                     $('#'+goalOptionField).append("<option value=\"http://www.serena.ac.uk/property/goalMeet\">meet</option>");
                     $('#'+goalOptionField).append("<option value=\"http://www.serena.ac.uk/property/goalAttendConference\">attend conference</option>");
                     $('#'+goalOptionField).append("<option value=\"http://www.serena.ac.uk/property/goalVisitPlace\">visit place</option>");
+                    $('#'+goalOptionField + " option:eq("+selectedIndex+")").prop("selected",true);
 
                     goalsArray.push( { item: i, goalType: goalOptionField, field: goalTextField } );
                     document.getElementById('goals_serialized').value=encodeURIComponent(JSON.stringify(goalsArray));
@@ -94,21 +109,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
                     goalOptionsMap[goalOptionField]=goalTextField;
                     optionBox.change( goalChanged );
                     optionBox.trigger('change');
+                    
                 }
                 
                 /* $("input#autocomplete").autocomplete( autoCompleteDBpediaConfig ); */
-                $("input#institute").autocomplete( autoCompleteDBpediaConfig );
-                $("input#location").autocomplete( autoCompleteDBpediaLocationConfig );
+                // $("input#institute").autocomplete( autoCompleteDBpediaConfig );
+                // $("input#location").autocomplete( autoCompleteDBpediaLocationConfig );
                 $("input#dblp_uri").autocomplete( autoCompleteDBLPAuthorConfig ); 
 
 		/* Add the grey input prompts to all input text boxes */
 		$("label").inFieldLabels();
 
-                $("#btnAddInterest").ready( addInterestFunc );
-                $("#btnAddExpertise").ready( addExpertiseFunc );
-                $("#btnAddGoal").ready( addGoalFunc );
+                $("#btnAddInterest").ready( function() { addInterestFunc() ; addInterestFunc() ; addInterestFunc() ;} );
+                $("#btnAddExpertise").ready( function() { addExpertiseFunc() ; addExpertiseFunc() ; addExpertiseFunc() ;} );
+                $("#btnAddGoal").ready( function() { addGoalFunc(0) ; addGoalFunc(1) ; addGoalFunc(2) ; addGoalFunc(3) ; } );
 
-		/* Create one input box for each */
+		/* Create input box for each */
                 $("#btnAddInterest").click( addInterestFunc );
                 $("#btnAddExpertise").click( addExpertiseFunc );
                 $("#btnAddGoal").click( addGoalFunc );
@@ -175,7 +191,7 @@ _gaq.push(['_trackPageview']);
                             <tr>
                                 <td>Institute:</td><td>
                      <p>
-                     <input id="institute" name="institute" size="50" type="text" />
+                     <input id="institute" name="institute" size="50" type="text" disabled value="http://dbpedia.org/resource/Heriot-Watt_University" />
                      <label for="institute">Your academic institute...</label>
                      </p>
                                 </td>
@@ -192,12 +208,20 @@ _gaq.push(['_trackPageview']);
                             <tr>
                                 <td>Location:</td><td>
                       <p>
-                      <input id="location" name="location" size="50" type="text" />
+                      <input id="location" name="location" size="50" type="text" disabled value="http://dbpedia.org/resource/Edinburgh"/>
                       <label for="location">Where do you live...</label>
                       </p>
                                 </td> 
                             </tr>
 
+                            <!-- Empty row -->
+                            <tr><td height="10"></td><td></td></tr>
+
+                            <tr><td></td><td>
+<div class="dblpNote">
+If you are getting towards the end of your PhD and have written papers that have been published, then they may be in the DBLP database. Type in your name below to identify yourself. It is fine if you cannot find yourself in DBLP, this is an optional field.
+</div>
+                            </td></tr>
                             <tr>
                                 <td>DBLP:</td><td>
                       <p>
@@ -207,9 +231,13 @@ _gaq.push(['_trackPageview']);
                                 </td>
                             </tr>
                         </table>
-                        <br>
+                        <br><br>
 
-                        <h3>Text about me</h3>
+                        <h3>Synopsis of your research</h3>
+<div class="dblpNote">
+  Provide a summary of your research here. <i>Tip:</i> perhaps paste in some of your thesis proposal here.
+</div>
+
 
                         <textarea rows="4" cols="40" id="about_me_text" name="about_me_text" ></textarea>
 
@@ -217,7 +245,7 @@ _gaq.push(['_trackPageview']);
 
                     <td class="mainTableCell">
 
-                        <h3>Professional Expertise</h3>
+                        <h3>Academic or Professional Expertise</h3>
 
                         Enter your areas of expertise...
                         <table id="tableExpertise"></table>
@@ -226,7 +254,7 @@ _gaq.push(['_trackPageview']);
 
                         <br><br>
 
-                        <h3>Personal and/or Academic Interests</h3>
+                        <h3>Personal or Academic Interests</h3>
 
                         Enter your areas of interest...
                         <table id="tableInterests">
@@ -253,6 +281,7 @@ _gaq.push(['_trackPageview']);
             </table>
 
             <br>
+
 
             <!-- Keeping this separate as I amm pinning the "Process" button to the footer -->
             <div id="footer">
