@@ -251,24 +251,9 @@ _gaq.push(['_trackPageview']);
                                 </td> 
                             </tr>
 
-                            <!-- Empty row -->
-                            <tr><td height="10"></td><td></td></tr>
+                         </table> 
 
-                            <tr><td></td><td>
-<div class="dblpNote">
-If you are getting towards the end of your PhD and have written papers that have been published, then they may be in the DBLP database. Type in your name below to identify yourself. It is fine if you cannot find yourself in DBLP, this is an optional field.
-</div>
-                            </td></tr>
-                            <tr>
-                                <td>DBLP:</td><td>
-                      <p>
-                      <input id="dblp_uri" name="dblp_uri" size="50" type="text"/>
-                      <label for="dblp_uri">Search for your DBLP URI by name...</label>
-                      </p>
-                                </td>
-                            </tr>
-                        </table>
-                        <br><br>
+                        <br>
 
                         <h3>Academic or Professional Expertise</h3>
 
@@ -348,7 +333,7 @@ If you are getting towards the end of your PhD and have written papers that have
                         <tbody class="footerTBody">
                             <tr>
                                 <td colspan="4" class="footerTableCell">
-                                <input class="inputProcess" type="submit" value="Process" />
+                                <input class="inputProcess" type="submit" value="Sign Up" />
                                 </td>
                             </tr>
                             <tr>

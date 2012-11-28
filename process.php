@@ -54,6 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
     <body>
 
+<div class="thankYouPage">
 <a href="https://github.com/robstewart57/discover-me-semantically" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 
         <img class="topLogo" src="img/logo.png"/>
@@ -62,17 +63,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
             <h2>What now?</h2>
 
-              Thanks for signing up! We'll be in touch...
+      Thanks for signing up! We will soon use the data you have provided, and at some stage produce a report suggesting...
+<br><br>
+<li> Heriot Watt researchers you might like to speak with
+<li> Papers written by Heriot Watt academics that might relate to your PhD research
+<li> Ideas or knowledge that relates to your PhD research and interests                                                          
 
 <br><br>
+Expect an email from us in the coming weeks.
+
+<br><br>
+
+<center>
+      <B>This is the end of the sign-up procedure. The information below is not part of the study, but may be of interest to you.</B>
+</center>
+
+<br><br><br><br>
             <h2>What Else?</h2>
 
-              You can download your RDF file, or visualize your researh...
+      The evaluation of this study will continue when we have analysed the data from each participant. We will get in touch with you at a late date about this. In the meantime...
+
+<li> Download your RDF file and add a link to it on your webpage. This provides search engines with a machine-readable information source that describes you and your research, and makes you more visible on the <i>semantic</i> web. Instructions are <a style="font-size: 11pt;" target="_blank" href="http://wiki.foaf-project.org/w/FAQ">here</a> on how to do so.
+
+<li> To demonstrate the benefit of semantics in your new RDF file, you can visualize your research with respect to the surrounding concepts to your interests and expertise that you have just specified on the previous page.
 
 <br><br>
 <center>
-<table valign="top">
-<tr class="whatNextRow">
+<table valign="top" style="text-align: center;">
+<tr>
 <td valign="top">
 <form name="input" action="download-me.php" method="post" >
 <input type="hidden" name="fileName" id="fileName" value="<?php echo $fileName; ?>">
@@ -96,6 +114,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 </table>
 </center>
 
+</div>
+
+<!--
             <h2>RDF Representation</h2>
 
             <table class="inputTable">
@@ -116,6 +137,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 
                         </table>
+-->
+
 
             </table>
 

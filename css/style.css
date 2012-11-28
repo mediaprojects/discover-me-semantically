@@ -64,7 +64,9 @@ body{
     font-size: small;
 }
 
-
+.thankYouPage {
+  font-size: 12pt;
+}
 
 h2 {
     display: block;
