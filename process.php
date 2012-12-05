@@ -67,7 +67,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 <br><br>
 <li> Heriot Watt researchers you might like to speak with
 <li> Papers written by Heriot Watt academics that might relate to your PhD research
-<li> Ideas or knowledge that relates to your PhD research and interests                                                          
+<li> Connect you to other resources                                                       
 
 <br><br>
 Expect an email from us in the coming weeks.
@@ -81,11 +81,11 @@ Expect an email from us in the coming weeks.
 <br><br><br><br>
             <h2>What Else?</h2>
 
-      The evaluation of this study will continue when we have analysed the data from each participant. We will get in touch with you at a late date about this. In the meantime...
+In the meantime...
 
-<li> Download your RDF file and add a link to it on your webpage. This provides search engines with a machine-readable information source that describes you and your research, and makes you more visible on the <i>semantic</i> web. Instructions are <a style="font-size: 11pt;" target="_blank" href="http://wiki.foaf-project.org/w/FAQ">here</a> on how to do so.
+<li> <B>Download your RDF file</B>... and add a link to it on your webpage. This provides search engines with a machine-readable information source that describes you and your research, and makes you more visible on the <i>semantic</i> web. Instructions are <a style="font-size: 11pt;" target="_blank" href="http://wiki.foaf-project.org/w/FAQ">here</a> on how to do so.
 
-<li> To demonstrate the benefit of semantics in your new RDF file, you can visualize your research with respect to the surrounding concepts to your interests and expertise that you have just specified on the previous page.
+<li> <B>Visualize your RDF</B>... demonstrating the benefit of semantics in your new RDF file, you can visualize your research with respect to the surrounding concepts to your interests and expertise that you have just specified on the previous page.
 
 <br><br>
 <center>
@@ -115,29 +115,6 @@ Expect an email from us in the coming weeks.
 </center>
 
 </div>
-
-<!--
-            <h2>RDF Representation</h2>
-
-            <table class="inputTable">
-                <tr class="centerRow">
-                    <td class="rdfOutputCell">
-
-                        <div id="rdfPrettyPrint">
-                            <pre class="prettyprint">
-                                <?php
-                                echo $serializedRDF;
-                                ?>
-                            </pre>
-                        </div>
-                        <script src="prettify.js"></script>
-                        <script>prettyPrint();</script>
-
-                    </td>
-
-
-                        </table>
--->
 
 
             </table>

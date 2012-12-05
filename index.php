@@ -33,147 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         <script type="text/javascript" src="js/prettify.js"></script>
         <script type="text/javascript" src="js/jquery.infieldlabel.js"></script>
 
-        <script>            
-            var goalOptionsMap = {};
-        </script>
-
         <script type="text/javascript" src="js/auto-complete-configs.js"></script>
-
-        <script>
-
-            $(document).ready(function() {
-
-		var interestsArray = new Array();
-		var expertiseArray = new Array();
-                var findOutAboutArray = new Array();
-                var meetPersonArray = new Array();
-                var attendConfArray = new Array();
-                var visitPlaceArray = new Array();
-                // var goalsArray = new Array();
-                
-                var personalInterestsTable = $("#tableInterests");
-                var professionalExpertiseTable = $("#tableExpertise");
-                var findOutAboutTable = $("#tableFindOutAbout");
-                var meetPersonTable = $("#tableMeetPerson");
-                var attendConfTable = $("#tableAttendConf");
-                var visitPlaceTable = $("#tableVisitPlace");
-                // var goalsTable = $("#tableGoals");
-
-                var addExpertiseFunc = function() {
-                      addElem(expertiseArray,
-                              "expertise_serialized",
-                              "professional_expertise",
-                              "expertiseLbl",
-                              "Add an area of expertise...",
-                              professionalExpertiseTable,
-                              autoCompleteDBpediaConfig);
-                    };
-                
-                var addInterestFunc  = function() {
-                      addElem(interestsArray,
-                              "interests_serialized",
-                              "personal_interest",
-                              "interestLbl",
-                              "Add an interest...",
-                              personalInterestsTable,
-                              autoCompleteDBpediaConfig);
-                    };
-
-                var addFindOutAboutFunc = function() {
-                      addElem(findOutAboutArray,
-                              "findOutAbout_serialized",
-                              "find_out_about",
-                              "findOutAboutLbl",
-                              "Something new...",
-                              findOutAboutTable,
-                              autoCompleteDBpediaConfig );
-                }
-
-                var addMeetPersonFunc = function() {
-                      addElem(meetPersonArray,
-                              "meetPerson_serialized",
-                              "meet_person",
-                              "meetPersonLbl",
-                              "Academic person...",
-                              meetPersonTable,
-                              autoCompleteDBLPAuthorConfig);
-                }
-
-                var addAttendConfFunc = function() {
-                      addElem(attendConfArray,
-                              "attendConf_serialized",
-                              "attend_conf",
-                              "attendConfLbl",
-                              "A computer science conference...",
-                              attendConfTable,
-                              autoCompleteDBLPConferenceConfig);
-                }
-
-                var addVisitPlaceFunc = function() {
-                      addElem(visitPlaceArray,
-                              "visitPlace_serialized",
-                              "visit_place",
-                              "visitPlaceLbl",
-                              "Somewhere...",
-                              visitPlaceTable,
-                              autoCompleteDBpediaLocationConfig);
-                }
-
-                function addElem(arrayVal, serializedArray, fieldVal, labelVal, inputText, tableVal, autoCompleteCfg){
-                    var i = arrayVal.length + 1;
-                    var fieldVar = fieldVal + i;
-		    var labelVar = labelVal + i;
-                    var newRow = $("<tr><td>"+i+") </td><td><p><input id=\"" + fieldVar + "\" name=\"" + fieldVar + "\" size=\"50\" type=\"text\"/><label id=\"" + labelVar + "\" for=\"" + fieldVar + "\">" + inputText + "</label></p></td></tr>");
-                    tableVal.append(newRow);
-                    arrayVal.push( { item: i, field: fieldVar } );
-                    document.getElementById(serializedArray).value=encodeURIComponent(JSON.stringify(arrayVal));
-                    $("input#" + fieldVar).autocomplete( autoCompleteCfg );
-		    $("#" + labelVar).inFieldLabels();
-                }
-
-                
-                // $("input#autocomplete").autocomplete( autoCompleteDBpediaConfig );
-                // $("input#institute").autocomplete( autoCompleteDBpediaConfig );
-                // $("input#location").autocomplete( autoCompleteDBpediaLocationConfig );
-                $("input#dblp_uri").autocomplete( autoCompleteDBLPAuthorConfig ); 
-
-		/* Add the grey input prompts to all input text boxes */
-		$("label").inFieldLabels();
-
-                $("#btnAddInterest").ready( function() { addInterestFunc() ; addInterestFunc() ; addInterestFunc() ;} );
-                $("#btnAddExpertise").ready( function() { addExpertiseFunc() ; addExpertiseFunc() ; addExpertiseFunc() ;} );
-                $("#btnAddFindOutAbout").ready( function() { addFindOutAboutFunc() ; } );
-                $("#btnMeetPerson").ready( function() { addMeetPersonFunc() ; } );
-                $("#btnAttendConf").ready( function() { addAttendConfFunc() ; } );
-                $("#btnVisitPlace").ready( function() { addVisitPlaceFunc() ; } );
-
-                // $("#btnAddGoal").ready( function() { addGoalFunc(0) ; addGoalFunc(1) ; addGoalFunc(2) ; addGoalFunc(3) ; } );
-		/* Create input box for each */
-                $("#btnAddInterest").click( addInterestFunc );
-                $("#btnAddExpertise").click( addExpertiseFunc );
-                $("#btnAddFindOutAbout").click( addFindOutAboutFunc );
-                $("#btnMeetPerson").click( addMeetPersonFunc );
-                $("#btnAttendConf").click( addAttendConfFunc );
-                $("#btnVisitPlace").click( addVisitPlaceFunc );
-                // $("#btnAddGoal").click( addGoalFunc );
-
-                /* Used to pin footer */
-                $(window).resize(function() {
-                    $("#footer").pinFooter("relative");
-                });
-
-                $('#dblp_uri').focus(function () {
-                    var elemName = jQuery("#name") ;
-                    jQuery("#dblp_uri").val(elemName.val());
-                    jQuery("#dblp_uri").trigger("keydown");
-                });
-                
-                $("#footer").pinFooter();
-
-            });
-
-
-        </script>
 
 <script type="text/javascript">
 			    
@@ -195,160 +55,60 @@ _gaq.push(['_trackPageview']);
 
 <a href="https://github.com/robstewart57/discover-me-semantically" target="_blank"><img style="z-index: 5; position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 
-        <form name="input" id="inputForm" action="process.php" method="post" >
+           <img class="topLogo" src="img/logo.png"/>
 
-            <img class="topLogo" src="img/logo.png"/>
+<div class="introDiv">
+<h2>SerenA Study</h2>
 
-            <table class="inputTable">
+The purpose of our study is to explore and evaluate a semantic
+approach that supports academic researchers by providing computerized
+recommendations that are diverse and novel. This study is part of <a style="font-size: 11pt;" target="_blank" href="http://www.serena.ac.uk">SerenA: Chance Encounters</a> in the Space of Ideas.
 
-                <tr>
 
-                    <td class="mainTableCell">
+<br><br>
+<B>What we’ll ask you to do:</B>
+<br>
+<li> We'll ask you to complete an electronic form about your research
+  interests. You can do this using the Firefox or Chrome web browsers (we’re
+  sorry but it doesn’t work with Microsoft's Internet Explorer!)
 
-                        <h3>About Me</h3>
+<li> Over the next few days our software will create some recommendations
+  about papers you might be interested in reading and other
+  researchers whose work you might like to know about
 
-                        <table>
-                            <tr>
-                                <td>Name:</td><td>
-                     <p>
-                     <input id="name" name="name" type="text" size="50" />
-                     <label for="name">Your full name...</label>
-                     </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Institute:</td><td>
-                     <p>
-                     <input id="institute" name="institute" size="50" type="text" disabled value="http://dbpedia.org/resource/Heriot-Watt_University" />
-                     <label for="institute">Your academic institute...</label>
-                     </p>
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>Homepage:</td><td>
-                      <p>
-                      <input id="homepage" name="homepage" size="50" type="text"/>
-                      <label for="homepage">http://</label>
-                      </p>
-                                </td>
-                            </tr> -->
+<li> We'll arrange an interview where we'll show you the information
+  we’ve prepared and ask you for some feedback.
+<br><br>
+The names of people who complete the electronic form and the interview
+will go into a hat to win a £25 Amazon voucher.
+<br><br>
+<B>How we'll use the information:</B>
+<br>
+The information you give us will help us to evaluate our approach to
+providing interesting and valuable suggestions to academic
+researchers. We may publish the results of our evaluation. We will
+store information from the electronic questionnaires, and take notes
+and complete questionnaires during the interview. Data from the
+interview and electronic questionnaire will be stored anonymously. We
+will only publish anonymous quotes from the interviews. We ask for
+your names and email addresses so that we can contact you for the
+interview and in case you win the vouchers.
+<br><br>
+You can decide not to take part in the study at any time. You will
+join the study when you press the “Sign Up” button on the electronic
+form. After that, if you decide not to take part after all, please
+email dsb5 at hw dot ac dot uk and we’ll remove your information.
+<br><br>
+Contact: Diana Bental [d dot s dot bental at hw dot ac dot uk] or Rob Stewart [rs46 at hw dot ac dot uk]
 
-                            <tr>
-                                <td>Email address:</td><td>
-                      <p>
-                      <input id="email" name="email" size="50" type="text"/>
-                      <label for="email">Your Heriot Watt email address...</label>
-                      </p>
-                                </td>
-                            </tr>
+<br><br>
+<center>
+<form action="intro-2.php" name="input" >
+<input class="inputProcess" type="submit" value="Continue..." />
+</form>
+</center>
 
-                            <tr>
-                                <td>Location:</td><td>
-                      <p>
-                      <input id="location" name="location" size="50" type="text" disabled value="http://dbpedia.org/resource/Edinburgh"/>
-                      <label for="location">Where do you live...</label>
-                      </p>
-                                </td> 
-                            </tr>
-
-                         </table> 
-
-                        <br>
-
-                        <h3>Academic or Professional Expertise</h3>
-
-                        Enter your areas of expertise...
-                        <table id="tableExpertise"></table>
-
-                        <button type="button" id="btnAddExpertise">Add another...</button>
-
-                        <br><br>
-
-                        <h3>Synopsis of your research</h3>
-<div class="dblpNote">
-  Provide a summary of your research here.<br><i>Tip:</i> perhaps paste in some of your thesis proposal here...
 </div>
-
-
-                        <textarea rows="4" cols="40" id="about_me_text" name="about_me_text" ></textarea>
-
-                    </td>
-
-                    <td class="mainTableCell">
-
-
-                        <h3>Academic Interests</h3>
-
-                        Enter your areas of interest...
-                        <table id="tableInterests">
-                        </table>
-
-                        <button type="button" id="btnAddInterest">Add another...</button>
-
-                        <br><br>
-
-                        <h3>Goals</h3>
-  I would like to find out about... <br><i>e.g. a programming language, methodology, framework...</i>
-                        <table id="tableFindOutAbout"></table>
-                        <button class="styled-button" type="button" id="btnAddFindOutAbout">Add another...</button>
-
-                        <br><br>
-  I would like to meet the computer scientist...<br><i>e.g. "Ann Blandford", "Phil Wadler"</i>
-                        <table id="tableMeetPerson"></table>
-                        <button class="styled-button" type="button" id="btnMeetPerson">Add another...</button>
-
-                        <br><br>
-  I would like to attend a computer science conference<br><i>e.g. "icfp", "popl"</i>
-                        <table id="tableAttendConf"></table>
-                        <button class="styled-button" type="button" id="btnAttendConf">Add another...</button>
-
-                        <br><br>
-                        I would like to visit a place...
-                        <table id="tableVisitPlace"></table>
-                        <button class="styled-button" type="button" id="btnVisitPlace">Add another...</button>
-
-
-                        <br><br>
-
-                        <input type="hidden" name="interests_serialized" id="interests_serialized" value="">
-                        <input type="hidden" name="expertise_serialized" id="expertise_serialized" value="">
-                        <input type="hidden" name="findOutAbout_serialized" id="findOutAbout_serialized" value="">
-                        <input type="hidden" name="meetPerson_serialized" id="meetPerson_serialized" value="">
-                        <input type="hidden" name="attendConf_serialized" id="attendConf_serialized" value="">
-                        <input type="hidden" name="visitPlace_serialized" id="visitPlace_serialized" value="">
-                        <!-- <input type="hidden" name="goals_serialized" id="goals_serialized" value=""> -->
-
-                    </td>
-                </tr>
-            </table>
-
-            <br>
-
-
-            <!-- Keeping this separate as I amm pinning the "Process" button to the footer -->
-            <div id="footer">
-            <div class="footerWrapper">
-                <div class="footerTDiv">
-                    <table>
-                        <tbody class="footerTBody">
-                            <tr>
-                                <td colspan="4" class="footerTableCell">
-                                <input class="inputProcess" type="submit" value="Sign Up" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="footerTableCell"><a class="footerLink" target="_blank" href="https://github.com/robstewart57/discover-me-semantically">Source code @ github</a></td>
-                                <td><img src="img/logoepsrc.jpg" /></td>
-                                <td><img src="img/logoSerenA.png" /></td>
-                                <td class="footerTableCell"><a class="footerLink" href="http://www.serena.ac.uk" target="_blank">What is SerenA?</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        </form>
 
     </body>
 

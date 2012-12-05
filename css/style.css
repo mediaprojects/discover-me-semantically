@@ -68,6 +68,12 @@ body{
   font-size: 12pt;
 }
 
+.introDiv {
+  width: 800px;
+  margin: 0 auto;
+  font-size: 11pt;
+}
+
 h2 {
     display: block;
     margin-top: 0.5em;
