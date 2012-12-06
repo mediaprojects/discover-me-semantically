@@ -97,9 +97,9 @@ interview and in case you win the vouchers.
 You can decide not to take part in the study at any time. You will
 join the study when you press the “Sign Up” button on the electronic
 form. After that, if you decide not to take part after all, please
-email dsb5 at hw dot ac dot uk and we’ll remove your information.
+email [d dot s dot bental at hw dot ac dot uk] and we’ll remove your information.
 <br><br>
-Contact: Diana Bental [d dot s dot bental at hw dot ac dot uk] or Rob Stewart [rs46 at hw dot ac dot uk]
+<i>If you need to contact us:</i> Diana Bental [ at hw dot ac dot uk] or Rob Stewart [rs46 at hw dot ac dot uk]
 
 <br><br>
 <center>

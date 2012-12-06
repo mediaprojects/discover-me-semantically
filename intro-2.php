@@ -73,8 +73,7 @@ this:
 </center>
 
 <br><br>
-Choose the menu item that represents the thing you're interested in (I
-would choose "http://dbpedia.org/resource/Prolog" for the Prolog programming language). If you aren't
+Choose the menu item that represents the thing you're interested in. If you aren't
 sure which of the menu items has the right meaning, you can paste them
 into a new browser window and see some information from DBpedia. If
 none of the menu items seem right, press "tab" on your keyboard, and that will store the
